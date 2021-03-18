@@ -1,2 +1,0 @@
-C:\Users\jcjul\Desktop\pong_projeto\Release\Game.exe
-C:\Users\jcjul\Desktop\pong_projeto - multiplayer\Release\Game.exe

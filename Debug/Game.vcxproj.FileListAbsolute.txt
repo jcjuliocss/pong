@@ -1,6 +1,0 @@
-C:\Users\belmo\OneDrive\Área de Trabalho\Códigos_game\code-master\Chapter01\Debug\Game.exe
-C:\Users\belmo\OneDrive\Área de Trabalho\Códigos_game\code-master\Chapter01\Debug\Game.pdb
-C:\Users\belmo\OneDrive\Área de Trabalho\aulasFEI\games\aulas_minhas\1-2021\semana3\pong_projeto\Debug\Game.exe
-C:\Users\belmo\OneDrive\Área de Trabalho\aulasFEI\games\aulas_minhas\1-2021\semana3\pong_projeto\Debug\Game.pdb
-C:\Users\jcjul\Desktop\pong_projeto\Debug\Game.exe
-C:\Users\jcjul\Desktop\pong_projeto\Debug\Game.pdb
