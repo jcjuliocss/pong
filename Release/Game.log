@@ -1,0 +1,22 @@
+﻿  Game.cpp
+C:\Users\jcjul\Desktop\pong_projeto - multiplayer\Game.cpp(12,23): warning C4838: a conversão de 'float' em 'int' requer uma conversão de restrição
+C:\Users\jcjul\Desktop\pong_projeto - multiplayer\Game.cpp(12,23): warning C4244: 'inicializando': conversão de 'float' para 'int', possível perda de dados
+  Gerando código
+  1 of 83 functions ( 1.2%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    1 functions had inline decision re-evaluated but remain unchanged
+  Finalizada a geração de código
+  Game.vcxproj -> C:\Users\jcjul\Desktop\pong_projeto - multiplayer\Release\Game.exe
+  C:\Users\jcjul\Desktop\pong_projeto - multiplayer\\..\external\SDL\lib\win\x86\libfreetype-6.dll
+  C:\Users\jcjul\Desktop\pong_projeto - multiplayer\\..\external\SDL\lib\win\x86\libogg-0.dll
+  C:\Users\jcjul\Desktop\pong_projeto - multiplayer\\..\external\SDL\lib\win\x86\libpng16-16.dll
+  C:\Users\jcjul\Desktop\pong_projeto - multiplayer\\..\external\SDL\lib\win\x86\libvorbis-0.dll
+  C:\Users\jcjul\Desktop\pong_projeto - multiplayer\\..\external\SDL\lib\win\x86\libvorbisfile-3.dll
+  C:\Users\jcjul\Desktop\pong_projeto - multiplayer\\..\external\SDL\lib\win\x86\SDL2.dll
+  C:\Users\jcjul\Desktop\pong_projeto - multiplayer\\..\external\SDL\lib\win\x86\SDL2_image.dll
+  C:\Users\jcjul\Desktop\pong_projeto - multiplayer\\..\external\SDL\lib\win\x86\SDL2_mixer.dll
+  C:\Users\jcjul\Desktop\pong_projeto - multiplayer\\..\external\SDL\lib\win\x86\SDL2_ttf.dll
+  C:\Users\jcjul\Desktop\pong_projeto - multiplayer\\..\external\SDL\lib\win\x86\zlib1.dll
+  10 arquivo(s) copiado(s)
+  C:\Users\jcjul\Desktop\pong_projeto - multiplayer\\..\external\GLEW\lib\win\x86\glew32.dll
+  1 arquivo(s) copiado(s)
