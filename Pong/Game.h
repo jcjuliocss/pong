@@ -26,6 +26,11 @@ struct Score {
 	int player2;
 };
 
+struct Players {
+	bool player1 = true;
+	bool player2 = false;
+};
+
 // Game class
 class Game
 {
@@ -42,7 +47,7 @@ private:
 	void ProcessInput();
 	void UpdateGame();
 	void GenerateOutput();
-	void DrawScore();
+	void DrawScore(int score, int pos_x);
 
 	// Window created by SDL
 	SDL_Window* mWindow;
@@ -64,23 +69,13 @@ private:
 	// posicao da raquete da direita
 	Vector2 mPaddleRightPos;
 
-	// direcao da raquete de cima
-	int mPaddleTopDir;
-	// posicao da raquete de cima
-	Vector2 mPaddleTopPos;
-
-	// direcao da raquete de baixo
-	int mPaddleBottomDir;
-	// posicao da raquete de baixo
-	Vector2 mPaddleBottomPos;
 
 	// Position of ball
 	Vector2 mBallPos;
 	// Velocity of ball
 	Vector2 mBallVel;
 
-	Vector2 mBallPos2;
-	Vector2 mBallVel2;
-
 	Score score;
+
+	Players players;
 };

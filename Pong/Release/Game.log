@@ -1,4 +1,20 @@
 ﻿  Game.cpp
-C:\Users\jcjul\Desktop\Repositorios github\pong\Game.h(10,10): fatal error C1083: Não é possível abrir arquivo incluir: 'SDL/SDL.h': No such file or directory
-  Main.cpp
-C:\Users\jcjul\Desktop\Repositorios github\pong\Game.h(10,10): fatal error C1083: Não é possível abrir arquivo incluir: 'SDL/SDL.h': No such file or directory
+  Gerando código
+  4 of 84 functions ( 4.8%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Finalizada a geração de código
+  Game.vcxproj -> C:\Users\jcjul\Desktop\Repositorios github\pong\Pong\Release\Game.exe
+  C:\Users\jcjul\Desktop\Repositorios github\pong\Pong\\..\external\SDL\lib\win\x86\libfreetype-6.dll
+  C:\Users\jcjul\Desktop\Repositorios github\pong\Pong\\..\external\SDL\lib\win\x86\libogg-0.dll
+  C:\Users\jcjul\Desktop\Repositorios github\pong\Pong\\..\external\SDL\lib\win\x86\libpng16-16.dll
+  C:\Users\jcjul\Desktop\Repositorios github\pong\Pong\\..\external\SDL\lib\win\x86\libvorbis-0.dll
+  C:\Users\jcjul\Desktop\Repositorios github\pong\Pong\\..\external\SDL\lib\win\x86\libvorbisfile-3.dll
+  C:\Users\jcjul\Desktop\Repositorios github\pong\Pong\\..\external\SDL\lib\win\x86\SDL2.dll
+  C:\Users\jcjul\Desktop\Repositorios github\pong\Pong\\..\external\SDL\lib\win\x86\SDL2_image.dll
+  C:\Users\jcjul\Desktop\Repositorios github\pong\Pong\\..\external\SDL\lib\win\x86\SDL2_mixer.dll
+  C:\Users\jcjul\Desktop\Repositorios github\pong\Pong\\..\external\SDL\lib\win\x86\SDL2_ttf.dll
+  C:\Users\jcjul\Desktop\Repositorios github\pong\Pong\\..\external\SDL\lib\win\x86\zlib1.dll
+  10 arquivo(s) copiado(s)
+  C:\Users\jcjul\Desktop\Repositorios github\pong\Pong\\..\external\GLEW\lib\win\x86\glew32.dll
+  1 arquivo(s) copiado(s)

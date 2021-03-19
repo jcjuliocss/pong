@@ -17,9 +17,7 @@ Game::Game()
 ,mTicksCount(0)//para guardar o tempo decorrido no jogo
 ,mIsRunning(true)//verificar se o jogo ainda deve continuar sendo executado
 ,mPaddleLeftDir(0) // direcao da raquete da esquerda
-,mPaddleRightDir(0) // direcao da raquete da direita 
-,mPaddleTopDir(0) // direcao da raquete de cima
-,mPaddleBottomDir(0) // direcao da raquete de baixo
+,mPaddleRightDir(0) // direcao da raquete da direita
 {
 	
 }
@@ -69,22 +67,11 @@ bool Game::Initialize()
 	mPaddleRightPos.x = 1000.0f;//posição inicial da raquete da direita no eixo x
 	mPaddleRightPos.y = 768.0f / 2.0f;//posição inicial da raquete da direita no eixo y
 
-	mPaddleTopPos.x = 1024.0f / 2.0f;//posição inicial da raquete de cima no eixo x
-	mPaddleTopPos.y = 10.0f;//posição inicial da raquete de cime no eixo y
-
-	mPaddleBottomPos.x = 1024.0f / 2.0f;//posição inicial da raquete de baixo no eixo x
-	mPaddleBottomPos.y = 768.0f;//posição inicial da raquete de baixo eixo y
-
 	mBallPos.x = 1024.0f/2.0f;//posição da bola eixo x
 	mBallPos.y = 768.0f/2.0f;//posição da bola eixo y
-	mBallVel.x = 0;//-200.0f;//velocidade de movimentação da bola no eixo x
-	mBallVel.y = 0;//200.0f;//velocidade de movimentação da bola no eixo y
+	mBallVel.x = 150.0f;//-200.0f;//velocidade de movimentação da bola no eixo x
+	mBallVel.y = 150.0f;//200.0f;//velocidade de movimentação da bola no eixo y
 
-	//segunda bolinha
-	mBallPos2.x = 1024.0f / 2.0f; //posição da bola 2 eixo x
-	mBallPos2.y = 768.0f / 2.0f; //posição da bola 2 eixo y
-	mBallVel2.x = 0;//200.0f; //velocidade de movimentação da bola 2 no eixo x
-	mBallVel2.y = 0;//-200.0f; //velocidade de movimentação da bola 2 no eixo y
 	return true;
 }
 
@@ -129,15 +116,6 @@ void Game::ProcessInput(){
 		mPaddleLeftDir += 1;
 	}
 
-	mPaddleTopDir = 0;
-	if (state[SDL_SCANCODE_A]) {
-		mPaddleTopDir -= 1;
-	}
-
-	if (state[SDL_SCANCODE_D]) {
-		mPaddleTopDir += 1;
-	}
-
 	mPaddleRightDir = 0;
 	if (state[SDL_SCANCODE_UP]) {
 		mPaddleRightDir -= 1;
@@ -145,20 +123,16 @@ void Game::ProcessInput(){
 
 	if (state[SDL_SCANCODE_DOWN]) {
 		mPaddleRightDir += 1;
-	}
+	} 
 
-	mPaddleBottomDir = 0;
-	if (state[SDL_SCANCODE_LEFT]) {
-		mPaddleBottomDir -= 1;
-	}
-
-	if (state[SDL_SCANCODE_RIGHT]) {
-		mPaddleBottomDir += 1;
+	if (state[SDL_SCANCODE_2]) {
+		players.player2 = true;
+		score.player1 = 0;
+		score.player2 = 0;
 	}
 }
 
-void Game::UpdateGame()
-{
+void Game::UpdateGame(){
 	// Espere que 16ms tenham passado desde o último frame - limitando os frames
 	while (!SDL_TICKS_PASSED(SDL_GetTicks(), mTicksCount + 16));
 
@@ -178,44 +152,56 @@ void Game::UpdateGame()
 	if (mPaddleLeftDir != 0){
 		mPaddleLeftPos.y += mPaddleLeftDir * 300.0f * deltaTime;
 		// verifique que a raquete não se move para fora da tela - usamos "thickness", que definimos como a altura dos elementos
-		if (mPaddleLeftPos.y < (paddleH/2.0f + 25)){
-			mPaddleLeftPos.y = paddleH/2.0f + 25;
+		if (mPaddleLeftPos.y < (paddleH/2.0f + thickness)){
+			mPaddleLeftPos.y = paddleH/2.0f + thickness;
 		}
-		else if (mPaddleLeftPos.y > (768.0f - paddleH/2.0f - 25)){
-			mPaddleLeftPos.y = 768.0f - paddleH/2.0f - 25;
-		}
-	}
-
-	if (mPaddleRightDir != 0) {
-		mPaddleRightPos.y += mPaddleRightDir * 300.0f * deltaTime;
-		// verifique que a raquete não se move para fora da tela - usamos "thickness", que definimos como a altura dos elementos
-		if (mPaddleRightPos.y < (paddleH / 2.0f + 26)) {
-			mPaddleRightPos.y = paddleH / 2.0f + 26;
-		}
-		else if (mPaddleRightPos.y > (768.0f - paddleH / 2.0f - 26)) {
-			mPaddleRightPos.y = 768.0f - paddleH / 2.0f - 26;
+		else if (mPaddleLeftPos.y > (768.0f - paddleH/2.0f - thickness)){
+			mPaddleLeftPos.y = 768.0f - paddleH/2.0f - thickness;
 		}
 	}
 
-	if (mPaddleTopDir != 0) {
-		mPaddleTopPos.x += mPaddleTopDir * 300.0f * deltaTime;
-		// verifique que a raquete não se move para fora da tela - usamos "thickness", que definimos como a altura dos elementos
-		if (mPaddleTopPos.x < (paddleH / 2.0f)) {
-			mPaddleTopPos.x = paddleH / 2.0f;
-		}
-		else if (mPaddleTopPos.x > (1024.0f - paddleH / 2.0f - paddleH)) {
-			mPaddleTopPos.x = 1024.0f - paddleH / 2.0f - paddleH;
+	if (players.player2) {
+		if (mPaddleRightDir != 0) {
+			mPaddleRightPos.y += mPaddleRightDir * 300.0f * deltaTime;
+			// verifique que a raquete não se move para fora da tela - usamos "thickness", que definimos como a altura dos elementos
+			if (mPaddleRightPos.y < (paddleH / 2.0f + thickness)) {
+				mPaddleRightPos.y = paddleH / 2.0f + thickness;
+			}
+			else if (mPaddleRightPos.y > (768.0f - paddleH / 2.0f - thickness)) {
+				mPaddleRightPos.y = 768.0f - paddleH / 2.0f - thickness;
+			}
 		}
 	}
 
-	if (mPaddleBottomDir != 0) {
-		mPaddleBottomPos.x += mPaddleBottomDir * 300.0f * deltaTime;
-		// verifique que a raquete não se move para fora da tela - usamos "thickness", que definimos como a altura dos elementos
-		if (mPaddleBottomPos.x < (paddleH / 2.0f)) {
-			mPaddleBottomPos.x = paddleH / 2.0f;
+	// Atualize (negative) a posição da bola se ela colidir com a parede de baixo
+	if (mBallPos.y <= thickness && mBallVel.y < 0.0f) {
+		mBallVel.y *= -1;
+	}
+	else if (mBallPos.y >= (768 - thickness) && mBallVel.y > 0.0f) { // parede de cima
+		mBallVel.y *= -1;
+	}
+	else if (mBallPos.x >= (1024.0f - thickness) && mBallVel.x > 0.0f) { // parede da direita
+		if (!players.player2) {
+			mBallVel.x *= -1.0f;
+		}else {
+			score.player1++;
+			// se o jogador 1 fez ponto, a bola deve se mover na direcao do jogador 1 ate ele acertar
+			mBallVel.x = 150.0f;
+			mBallVel.y = 150.0f;
+			mBallPos.x = 1024.0f / 2.0f;//posição da bola eixo x
+			mBallPos.y = 768.0f / 2.0f;//posição da bola eixo y
 		}
-		else if (mPaddleBottomPos.x > (1024.0f - paddleH / 2.0f - paddleH)) {
-			mPaddleBottomPos.x = 1024.0f - paddleH / 2.0f - paddleH;
+	}else if (mBallPos.x <= 0.0f) {
+		if (!players.player2) {
+			mIsRunning = false;
+		}
+		else {
+			score.player2++;
+			// se o jogador 2 fez ponto, a bola deve se mover na direcao do jogador 1 ate ele acertar
+			mBallVel.x = -150.0f;
+			mBallVel.y = -150.0f;
+			mBallPos.x = 1024.0f / 2.0f;//posição da bola eixo x
+			mBallPos.y = 768.0f / 2.0f;//posição da bola eixo y
 		}
 	}
 	
@@ -223,74 +209,35 @@ void Game::UpdateGame()
 	mBallPos.x += mBallVel.x * deltaTime;
 	mBallPos.y += mBallVel.y * deltaTime;
 	
-	mBallPos2.x += mBallVel2.x * deltaTime;
-	mBallPos2.y += mBallVel2.y * deltaTime;
-	
 	// atualiza a posição da bola se ela colidiu com a raquete
 	float diff = mPaddleLeftPos.y - mBallPos.y;
-	float diff2 = mPaddleLeftPos.y - mBallPos2.y;
 	//pegue o valor absoluto de diferença entre o eixo y da bolinha e da raquete
 	//isso é necessário para os casos em que no próximo frame a bolinha ainda não esteja tão distante da raquete
 	//verifica se a bola está na area da raquete e na mesma posição no eixo x
 	diff = (diff > 0.0f) ? diff : -diff;
-	diff2 = (diff2 > 0.0f) ? diff2 : -diff2;
+
 	if (
 		// A diferença no eixo y y-difference is small enough
 		diff <= paddleH / 2.0f &&
 		// Estamos na posicao x correta
-		mBallPos.x <= 25.0f && mBallPos.x >= 20.0f &&
-		// A bolinha está se movendo para a esquerda
-		mBallVel.x < 0.0f)
+		mBallPos.x <= paddleH / 2.0f)
 	{
 		mBallVel.x *= -1.0f;
 		// depois de bater na raquete a velocidade da bolinha esta positiva, entao basta somar velocidade
-		mBallVel.x += 50.0f;
-		mBallVel.y += 50.0f;
-
-		score.player1++;
-	}else if (mBallPos.x <= 0.0f)
-	{
-		mIsRunning = false;
-	}else if (mBallPos.x >= (1024.0f - thickness) && mBallVel.x > 0.0f){
-		mBallVel.x *= -1.0f;
+		mBallVel.x += 25.0f;
+		mBallVel.y += 25.0f;
 	}
 
-	if (
-		// A diferença no eixo y y-difference is small enough
-		diff2 <= paddleH / 2.0f &&
-		// Estamos na posicao x correta
-		mBallPos2.x <= 25.0f && mBallPos2.x >= 20.0f &&
-		// A bolinha está se movendo para a esquerda
-		mBallVel2.x < 0.0f)
-	{
-		mBallVel2.x *= -1.0f;
-		// depois de bater na raquete a velocidade da bolinha esta positiva, entao basta somar velocidade
-		mBallVel2.x += 50.0f;
-		mBallVel2.y += 50.0f;
+	if (players.player2) {
+		float diff2 = mPaddleRightPos.y - mBallPos.y;
+		diff2 = (diff2 > 0.0f) ? diff2 : -diff2;
 
-		score.player1++;
+		if (diff2 <= paddleH / 2.0f && mBallPos.x >= 999.0f) {
+			mBallVel.x *= -1.0f;
+			mBallVel.x -= 25.0f;
+			mBallVel.y -= 25.0f;
+		}
 	}
-	else if (mBallPos2.x <= 0.0f)
-	{
-		mIsRunning = false;
-		score.player2++;
-	}
-	/*else if (mBallPos2.x >= (1024.0f - thickness) && mBallVel2.x > 0.0f) {
-		mBallVel2.x *= -1.0f;
-	}
-	
-	// Atualize (negative) a posição da bola se ela colidir com a parede de baixo
-	if (mBallPos.y <= thickness && mBallVel.y < 0.0f){
-		mBallVel.y *= -1;
-	}else if (mBallPos.y >= (768 - thickness) && mBallVel.y > 0.0f){
-		mBallVel.y *= -1;
-	}
-
-	if (mBallPos2.y <= thickness && mBallVel2.y < 0.0f){
-		mBallVel2.y *= -1;
-	}else if (mBallPos2.y >= (768 - thickness) && mBallVel2.y > 0.0f) {
-		mBallVel2.y *= -1;
-	}*/
 }
 
 //Desenhando a tela do jogo
@@ -309,30 +256,30 @@ void Game::GenerateOutput()
 	SDL_RenderClear(mRenderer);
 
 	// Desenha as paredes - mudamos a cor de mRenderer para o desenho dos retangulos que formaram as paredes
-	//SDL_SetRenderDrawColor(mRenderer, 255, 255, 255, 255);
+	SDL_SetRenderDrawColor(mRenderer, 255, 255, 255, 255);
 	
 	// Desenha a parede de cima - desenhando um retangulo no topo da tela, coordenada x e y = 0, 0 representa o topo esquerdo
 	//primeiro definimos as coordenadas e tamanhos do triangulo
-	//SDL_Rect wall{
-	//	0,			// Top left x
-	//	0,			// Top left y
-	//	1024,		// Width
-	//	thickness	// Height
-	//};
-	//SDL_RenderFillRect(mRenderer, &wall);//finalmente, desenhamos um retangulo no topo
-	
+	SDL_Rect wall{
+			0,			// Top left x
+			0,			// Top left y
+			1024,		// Width
+			thickness	// Height
+	};
+
+	SDL_RenderFillRect(mRenderer, &wall);//finalmente, desenhamos um retangulo no topo
 	//desenhamos as outras paredes apenas mudando as coordenadas de wall
 	// parede de baixo
-	//wall.y = 768 - thickness;
-	//SDL_RenderFillRect(mRenderer, &wall);
-	
+	wall.y = 768 - thickness;
+	SDL_RenderFillRect(mRenderer, &wall);
 	// parede da direita
-	//wall.x = 1024 - thickness;
-	//wall.y = 0;
-	//wall.w = thickness;
-	//wall.h = 1024;
-	//SDL_RenderFillRect(mRenderer, &wall);
-	
+	if (!players.player2) {
+		wall.x = 1024 - thickness;
+		wall.y = 0;
+		wall.w = thickness;
+		wall.h = 1024;
+		SDL_RenderFillRect(mRenderer, &wall);
+	}
 	//como as posições da raquete e da bola serão atualizadas a cada iteração do game loop, criamos "membros" na classe
 	//Game.h para tal
 
@@ -349,30 +296,15 @@ void Game::GenerateOutput()
 	};
 	SDL_RenderFillRect(mRenderer, &paddle);
 
-	SDL_Rect paddle2{
-		static_cast<int>(mPaddleTopPos.x),//static_cast converte de float para inteiros, pois SDL_Rect trabalha com inteiros
-		static_cast<int>(mPaddleTopPos.y),
-		paddleH, // largura da requete
-		static_cast<int>(thickness) // altura da raquete
-	};
-	SDL_RenderFillRect(mRenderer, &paddle2);
-
-	SDL_Rect paddle3{
-		static_cast<int>(mPaddleRightPos.x),//static_cast converte de float para inteiros, pois SDL_Rect trabalha com inteiros
-		static_cast<int>(mPaddleRightPos.y - paddleH / 2),
-		thickness,
-		static_cast<int>(paddleH)
-	};
-	SDL_RenderFillRect(mRenderer, &paddle3);
-
-	SDL_Rect paddle4{
-		static_cast<int>(mPaddleBottomPos.x),//static_cast converte de float para inteiros, pois SDL_Rect trabalha com inteiros
-		static_cast<int>(mPaddleBottomPos.y - paddleH / 2),
-		paddleH,
-		static_cast<int>(thickness)
-	};
-	SDL_RenderFillRect(mRenderer, &paddle4);
-	
+	if (players.player2) {
+		SDL_Rect paddle2{
+			static_cast<int>(mPaddleRightPos.x),//static_cast converte de float para inteiros, pois SDL_Rect trabalha com inteiros
+			static_cast<int>(mPaddleRightPos.y - paddleH / 2),
+			thickness,
+			static_cast<int>(paddleH)
+		};
+		SDL_RenderFillRect(mRenderer, &paddle2);
+	}
 
 	//desenhando a bola - usando mBallPos que é uma struc de coordenadas definida como membro em Game.h
 	
@@ -386,31 +318,28 @@ void Game::GenerateOutput()
 		thickness
 	};
 	SDL_RenderFillRect(mRenderer, &ball);
-	
-	SDL_Rect ball2{	
-		static_cast<int>(mBallPos2.x - thickness/2),
-		static_cast<int>(mBallPos2.y - thickness/2),
-		thickness,
-		thickness
-	};
-	SDL_RenderFillRect(mRenderer, &ball2);
 
 	SDL_SetRenderDrawColor(mRenderer, 255, 0, 0, 255);
 	
-	DrawScore();
+	if (!players.player2) {
+		DrawScore(score.player1, 1024 / 2 - 50);
+	}else {
+		DrawScore(score.player1, 256);
+		DrawScore(score.player2, 718);
+	}
 	
 	// Swap front buffer and back buffer
 	SDL_RenderPresent(mRenderer);
 }
 
-void Game::DrawScore() {
+void Game::DrawScore(int score, int pos_x) {
 	int ttfResult = TTF_Init();
 
 	TTF_Font* font = TTF_OpenFont("arial.ttf", 18); // define fonte do score
 	SDL_Color color = { 255, 255, 255 }; // define a cor do score
 
 	// cria a superficie e renderiza o texto
-	SDL_Surface* scoreSurface = TTF_RenderText_Solid(font, to_string(score.player1).c_str(), color);
+	SDL_Surface* scoreSurface = TTF_RenderText_Solid(font, to_string(score).c_str(), color);
 
 	// log de possiveis erros
 	if (scoreSurface == NULL){
@@ -426,13 +355,13 @@ void Game::DrawScore() {
 		}
 		else{
 			//passa fonte, dimensoes(WxH) e o score para servir de texto e sua posicao na tela
-			TTF_SizeText(font, to_string(score.player1).c_str(), &width, &heigth);
+			TTF_SizeText(font, to_string(score).c_str(), &width, &heigth);
 		}
 		// depois de definida a textura, pode descartar a superficie
 		SDL_FreeSurface(scoreSurface);
 		// cria o retangulo para exibir o score
 		SDL_Rect scoreRect{
-			static_cast<int>(1024 / 2 - width / 2), // exibe score no meio da tela horizontalmente
+			static_cast<int>(pos_x), // exibe score no meio da tela horizontalmente
 			50, // coloca o score no topo da tela
 			width, // largura do tamanho do score
 			heigth // altura do tamanho do score

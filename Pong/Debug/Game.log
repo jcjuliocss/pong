@@ -1,17 +1,10 @@
-﻿  Game.cpp
-C:\Users\jcjul\Desktop\Repositorios github\pong\Pong\Game.cpp(12,23): warning C4838: a conversão de 'float' em 'int' requer uma conversão de restrição
-C:\Users\jcjul\Desktop\Repositorios github\pong\Pong\Game.cpp(12,23): warning C4244: 'inicializando': conversão de 'float' para 'int', possível perda de dados
-  Game.vcxproj -> C:\Users\jcjul\Desktop\Repositorios github\pong\Pong\Debug\Game.exe
-  C:\Users\jcjul\Desktop\Repositorios github\pong\Pong\\..\external\SDL\lib\win\x86\libfreetype-6.dll
-  C:\Users\jcjul\Desktop\Repositorios github\pong\Pong\\..\external\SDL\lib\win\x86\libogg-0.dll
-  C:\Users\jcjul\Desktop\Repositorios github\pong\Pong\\..\external\SDL\lib\win\x86\libpng16-16.dll
-  C:\Users\jcjul\Desktop\Repositorios github\pong\Pong\\..\external\SDL\lib\win\x86\libvorbis-0.dll
-  C:\Users\jcjul\Desktop\Repositorios github\pong\Pong\\..\external\SDL\lib\win\x86\libvorbisfile-3.dll
-  C:\Users\jcjul\Desktop\Repositorios github\pong\Pong\\..\external\SDL\lib\win\x86\SDL2.dll
-  C:\Users\jcjul\Desktop\Repositorios github\pong\Pong\\..\external\SDL\lib\win\x86\SDL2_image.dll
-  C:\Users\jcjul\Desktop\Repositorios github\pong\Pong\\..\external\SDL\lib\win\x86\SDL2_mixer.dll
-  C:\Users\jcjul\Desktop\Repositorios github\pong\Pong\\..\external\SDL\lib\win\x86\SDL2_ttf.dll
-  C:\Users\jcjul\Desktop\Repositorios github\pong\Pong\\..\external\SDL\lib\win\x86\zlib1.dll
-  10 arquivo(s) copiado(s)
-  C:\Users\jcjul\Desktop\Repositorios github\pong\Pong\\..\external\GLEW\lib\win\x86\glew32.dll
-  1 arquivo(s) copiado(s)
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Microsoft\VC\v160\Microsoft.CppCommon.targets(632,5): error MSB6003: Não foi possível executar a tarefa executável "CL.exe" especificada. System.IO.IOException: A operação solicitada não pode ser executada em um arquivo com uma seção mapeada pelo usuário aberta.
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Microsoft\VC\v160\Microsoft.CppCommon.targets(632,5): error MSB6003: 
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Microsoft\VC\v160\Microsoft.CppCommon.targets(632,5): error MSB6003:    em System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Microsoft\VC\v160\Microsoft.CppCommon.targets(632,5): error MSB6003:    em System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Microsoft\VC\v160\Microsoft.CppCommon.targets(632,5): error MSB6003:    em System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options)
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Microsoft\VC\v160\Microsoft.CppCommon.targets(632,5): error MSB6003:    em Microsoft.Build.Shared.FileUtilities.OpenWrite(String path, Boolean append, Encoding encoding)
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Microsoft\VC\v160\Microsoft.CppCommon.targets(632,5): error MSB6003:    em Microsoft.Build.Utilities.CanonicalTrackedInputFiles.SaveTlog(DependencyFilter includeInTLog)
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Microsoft\VC\v160\Microsoft.CppCommon.targets(632,5): error MSB6003:    em Microsoft.Build.CPPTasks.CL.ComputeOutOfDateSources()
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Microsoft\VC\v160\Microsoft.CppCommon.targets(632,5): error MSB6003:    em Microsoft.Build.CPPTasks.TrackedVCToolTask.SkipTaskExecution()
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Microsoft\VC\v160\Microsoft.CppCommon.targets(632,5): error MSB6003:    em Microsoft.Build.Utilities.ToolTask.Execute()
