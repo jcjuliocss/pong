@@ -129,6 +129,9 @@ void Game::ProcessInput(){
 		players.player2 = true;
 		score.player1 = 0;
 		score.player2 = 0;
+
+		mBallPos.x = 1024.0f / 2.0f;
+		mBallPos.y = 768.0f / 2.0f;
 	}
 }
 
@@ -226,6 +229,10 @@ void Game::UpdateGame(){
 		// depois de bater na raquete a velocidade da bolinha esta positiva, entao basta somar velocidade
 		mBallVel.x += 25.0f;
 		mBallVel.y += 25.0f;
+
+		if (!players.player2) {
+			score.player1++;
+		}
 	}
 
 	if (players.player2) {
